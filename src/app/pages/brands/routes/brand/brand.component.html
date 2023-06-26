@@ -1,0 +1,16 @@
+<ng-container *ngIf="categoriesGroupsAndGames$ | async as categoriesGroupsAndGames; else loadingTemplate">
+    <ng-container *ngIf="
+            categoriesGroupsAndGames.games !== null && categoriesGroupsAndGames.categoriesGroups !== null;
+            else loadingTemplate
+        ">
+        <ng-container *ngIf="categoriesGroupsAndGames.games.length; else noDataTemplate">
+            <app-brand-category-games [categories]="categoriesGroupsAndGames.categoriesGroups[brandId]"
+                [brandGames]="categoriesGroupsAndGames.games"></app-brand-category-games>
+        </ng-container>
+    </ng-container>
+</ng-container>
+
+<ng-template #noDataTemplate>No data.</ng-template>
+<ng-template #loadingTemplate>
+    <app-brand-category-games-skeleton></app-brand-category-games-skeleton>
+</ng-template>

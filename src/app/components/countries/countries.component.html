@@ -1,0 +1,24 @@
+<ng-container *ngIf="countries$ | async as countries; else loadingTemplate">
+    <ng-container *ngIf="countries.length; else noDataTemplate">
+        <select
+            [ngModel]="selectedCountryCode"
+            (ngModelChange)="onChangeCountry($event)"
+            class="focus:border-blue-500 focus:ring-blue-500 p-1 text-gray-900 text-sm w-[150px]"
+        >
+            <option [ngValue]="null">Choose a country</option>
+            <option *ngFor="let country of countries; trackByProperty: 'code'" [ngValue]="country.code">
+                {{ country.country }}
+            </option>
+        </select>
+    </ng-container>
+</ng-container>
+
+<ng-template #noDataTemplate>No data.</ng-template>
+<ng-template #loadingTemplate>
+    <div role="status" class="animate-pulse max-w-lg w-24">
+        <div class="flex flex-col items-center w-full ">
+            <div class="h-1.5 bg-gray-200 rounded-full w-full"></div>
+        </div>
+        <span class="sr-only">Loading...</span>
+    </div>
+</ng-template>

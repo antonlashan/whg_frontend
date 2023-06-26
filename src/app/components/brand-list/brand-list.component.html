@@ -1,0 +1,21 @@
+<ul class="font-normal lg:text-sm pb-10 pt-2 overflow-y-auto h-full">
+    <ng-container *ngIf="brands$ | async as brands; else loadingTemplate">
+        <li *ngFor="let brand of brands; trackByProperty: 'id'">
+            <a [routerLink]="['/brands', brand.id]" queryParamsHandling="preserve"
+                class="py-2 transition-colors duration-200 relative flex items-center flex-wrap font-medium hover:text-gray-900 text-gray-500">
+                {{ brand.brand }}
+            </a>
+        </li>
+    </ng-container>
+</ul>
+
+<ng-template #loadingTemplate>
+
+    <div role="status" class="space-y-5 animate-pulse max-w-lg">
+        <div class="flex flex-col items-center w-full space-y-7 py-4">
+            <div class="h-2.5 bg-gray-200 rounded-full w-full" *ngFor="let i of noOfRows; trackByProperty: 'id'"></div>
+        </div>
+        <span class="sr-only">Loading...</span>
+    </div>
+
+</ng-template>

@@ -1,0 +1,44 @@
+<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md border hover:opacity-75 relative">
+    <div class="absolute flex flex-col p-4 gap-4">
+        <span class="bg-blue-100 px-1.5 py-0.5 rounded text-blue-800 text-sm">{{ game.provider }}</span>
+
+        <span title="Hot" *ngIf="hot">
+            <svg
+                class="w-6 h-6 fill-red-500 animate-pulse"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 17 20"
+            >
+                <path
+                    d="M7.958 19.393a7.7 7.7 0 0 1-6.715-3.439c-2.868-4.832 0-9.376.944-10.654l.091-.122a3.286 3.286 0 0 0 .765-3.288A1 1 0 0 1 4.6.8c.133.1.313.212.525.347A10.451 10.451 0 0 1 10.6 9.3c.5-1.06.772-2.213.8-3.385a1 1 0 0 1 1.592-.758c1.636 1.205 4.638 6.081 2.019 10.441a8.177 8.177 0 0 1-7.053 3.795Z"
+                />
+            </svg>
+        </span>
+
+        <span title="New" *ngIf="new">
+            <svg
+                class="w-6 h-6 fill-green-400 animate-pulse"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    d="M15.133 10.632v-1.8a5.406 5.406 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C4.867 13.018 3 13.614 3 14.807 3 15.4 3 16 3.538 16h12.924C17 16 17 15.4 17 14.807c0-1.193-1.867-1.789-1.867-4.175ZM4 4a1 1 0 0 1-.707-.293l-1-1a1 1 0 0 1 1.414-1.414l1 1A1 1 0 0 1 4 4ZM2 8H1a1 1 0 0 1 0-2h1a1 1 0 1 1 0 2Zm14-4a1 1 0 0 1-.707-1.707l1-1a1 1 0 1 1 1.414 1.414l-1 1A1 1 0 0 1 16 4Zm3 4h-1a1 1 0 1 1 0-2h1a1 1 0 1 1 0 2ZM6.823 17a3.453 3.453 0 0 0 6.354 0H6.823Z"
+                />
+            </svg>
+        </span>
+    </div>
+
+    <a routerLink="./" (click)="onClickGame()">
+        <img
+            class="h-full w-full object-cover object-center"
+            [src]="imagePathUrl + '/' +game.launchcode + '.jpg'"
+            [alt]="game.name"
+        />
+        <div class="p-2">
+            <h5 class="font-medium text-gray-900 text-sm text-center">{{ game.name }}</h5>
+        </div>
+    </a>
+</div>

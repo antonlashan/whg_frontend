@@ -1,0 +1,28 @@
+<ul class="overflow-y-auto h-full gap-10 grid">
+    <li *ngFor="let category of getFilteredCategories()">
+        <ng-container *ngIf="getFilteredCategoryGames(category) as games">
+            <div class="mb-4 flex justify-between">
+                <span class="font-medium text-gray-500">{{ category.name }}</span>
+
+                <a
+                    [routerLink]="['/categories', category.brandid, category.category]"
+                    class="underline"
+                    *ngIf="games.length >= minimumGamesPerCategory"
+                >
+                    Show all
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-4">
+                <ng-container *ngFor="let brandGame of games; index as i">
+                    <app-game
+                        *ngIf="i < minimumGamesPerCategory"
+                        [game]="brandGame.game"
+                        [hot]="brandGame.hot"
+                        [new]="brandGame.new"
+                    ></app-game>
+                </ng-container>
+            </div>
+        </ng-container>
+    </li>
+</ul>
